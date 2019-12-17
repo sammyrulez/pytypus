@@ -24,8 +24,12 @@ class OptionT(Generic[T]):
             return OptionT(None)
 
     def is_empty(self):
-        self.value is None
+        return self.value is None
 
 
 def empty() -> OptionT[any]:
     return OptionT(None)
+
+
+def some(v):
+    return OptionT(v)

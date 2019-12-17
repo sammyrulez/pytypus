@@ -14,4 +14,7 @@ def test_map():
     from pytypus import option
     e = option.empty()
     mapped_e = e.map(lambda k: str(k))
-    assert mapped_e.is_empty() == True
+    assert mapped_e.is_empty()
+    f = option.some("string")
+    mapped_f = f.map(lambda s: len(s))
+    assert mapped_f.value == 6
