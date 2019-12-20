@@ -1,6 +1,6 @@
 from __future__ import annotations
 from pytypus.functor import Functor
-from typing import Generic, Iterable, TypeVar, Union, Callable
+from typing import Generic, Iterable, Optional, TypeVar, Union, Callable
 
 
 T = TypeVar('T')
@@ -45,6 +45,9 @@ class OptionT(Functor[T]):
         else:
             return OptionT(v)
 
+    def to_Optional(self) -> Optional[T]:
+        return self._value
+
     def __str__(self) -> str:
         if(self._value):
             return str(self._value)
@@ -75,4 +78,8 @@ def empty() -> OptionT[any]:
 
 
 def some(v):
+    return OptionT(v)
+
+
+def from_optional(v: Optional[any]) -> OptionT[any]:
     return OptionT(v)
