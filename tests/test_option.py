@@ -1,8 +1,4 @@
-from __future__ import annotations
-from typing import Any, Callable, Generic, TypeVar
 from pytypus import option
-T = TypeVar("T")
-S = TypeVar("S")
 
 
 def test_map():
