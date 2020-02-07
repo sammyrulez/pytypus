@@ -74,7 +74,7 @@ class OptionT(Functor[T]):
 
 
 def empty() -> OptionT[any]:
-    return OptionT(None)
+    return OptionT(None)  # type: ignore
 
 
 def some(v):
@@ -82,4 +82,4 @@ def some(v):
 
 
 def from_optional(v: Optional[any]) -> OptionT[any]:
-    return OptionT(v)
+    return OptionT(v)  # type: ignore
