@@ -72,6 +72,12 @@ class OptionT(Functor[T]):
         else:
             return iter([])
 
+    def __hash__(self) -> int:
+        if(self._value):
+            return 32 * hash(self._value)
+        else:
+            return 0
+
 
 def empty() -> OptionT[any]:
     return OptionT(None)  # type: ignore
