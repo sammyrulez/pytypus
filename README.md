@@ -16,3 +16,13 @@ Heavily inspired by [Scala Cats and](https://typelevel.org/cats/)[fp-ts](https:/
 
 ```
 
+## Either
+
+In day-to-day programming, it is fairly common to find ourselves writing functions that can fail. For instance, querying a service may result in a connection issue, or some unexpected JSON response. To communicate these errors it has become common practice to throw exceptions. This pattern has a long istroy of braeaking the flow of your code and since *"explicit is bettar than implicit"*, how then do we communicate an error? By making it explicit in the data type we return.
+
+```
+    def parse(x:string) -> Either[String,List[String]]:
+        ...
+
+```
+
