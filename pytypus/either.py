@@ -24,9 +24,11 @@ class Either(Generic[L, R], Functor[R]):
         else:
             return self
 
+    @property
     def left(self) -> L:
         return self._left
 
+    @property
     def right(self) -> R:
         return self._right
 
