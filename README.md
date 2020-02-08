@@ -7,6 +7,9 @@
 A library to enable a partial functional programming experince in Python.
 Heavily inspired by [Scala Cats](https://typelevel.org/cats/) and [fp-ts](https://gcanti.github.io/fp-ts/).
 
+# Data Structure
+
+
 ## OptionT
 
 `OptionT[T]` is a light wrapper on an `Optional`. Speaking technically, it is a monad for `Optional`, but you don’t need to know what that means for it to be useful. OptionT can be more convenient to work with than using Optional directly since you can  safetly run functions on it withouc checking for `None` values. Integrates some of the python object protocol.
@@ -31,6 +34,20 @@ In day-to-day programming, it is fairly common to find ourselves writing functio
 ## Validated
 
 ## State
+
+## List
+
+## Kleisli
+
+# Functional Syntax helpers
+
+## Curry
+
+## Const
+
+## Pattern matcher
+
+
 
 
 
