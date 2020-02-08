@@ -2,6 +2,8 @@
 
 ### Funcional Types Tools For Python.
 
+![Python CI](https://github.com/sammyrulez/pytypus/workflows/Python%20CI/badge.svg)
+
 A library to enable a partial functional programming experince in Python.
 Heavily inspired by [Scala Cats and](https://typelevel.org/cats/)[fp-ts](https://gcanti.github.io/fp-ts/).
 
