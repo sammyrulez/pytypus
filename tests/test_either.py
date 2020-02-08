@@ -10,4 +10,4 @@ def test_map():
 
     ko_val = left("x")
     ko_val.map(lambda v: v + " world")
-    assert hello_world.right == None
+    assert ko_val.right == None

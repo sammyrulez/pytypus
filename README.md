@@ -28,3 +28,9 @@ In day-to-day programming, it is fairly common to find ourselves writing functio
 
 ```
 
+## Validated
+
+## State
+
+
+
