@@ -72,3 +72,10 @@ def left(l: L) -> Either[L, R]:
 
 def right(r: R) -> Either[L, R]:
     return Either(right=r)
+
+
+def cond(condition: bool, r: R, l: L) -> Either[L, R]:
+    if condition:
+        return right(r)
+    else:
+        return left(l)
