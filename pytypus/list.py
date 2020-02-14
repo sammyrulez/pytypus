@@ -8,8 +8,14 @@ class Chain(Generic[T]):
 
     list: List[T]
 
+    def __init__(self,  list: List[T]):
+        self.list = list
+
     def map(self, f: Callable[[T], S]) -> Chain[S]:
-        pass
+        return Chain(map(f, self.list))
 
     def flat_map(self, f: Callable[[T], Chain[S]]) -> Chain[S]:
-        pass
+        temp: List[T] = []
+        for e in list:
+            temp = temp + f(e)
+        return Chain(temp)
