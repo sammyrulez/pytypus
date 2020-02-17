@@ -1,5 +1,6 @@
 from pytypus.either import Either, cond
-from pytypus.validated import Validated, from_Either
+from pytypus.validated import Valid, Validated, from_Either
+from pytypus.list import Chain
 from dataclasses import dataclass
 
 
@@ -30,7 +31,7 @@ class RegistrationFormValidator(object):
     def validateUsername(self, username: str) -> Validated[DomainValidation, str]:
         return from_Either(cond(True, username, UsernameHasSpecialCharacters))
 
-    def validateForm(self, username: str, password: str, firstName: str, lastName: str, age: int) -> Validated[DomainValidation, RegistrationData]:
+    def validateForm(self, username: str, password: str, first_name: str, last_name: str, age: int) -> Validated[Chain[DomainValidation], RegistrationData]:
         """  for { 
             validatedUserName <- validateUserName(username)
             validatedPassword <- validatePassword(password)
@@ -39,8 +40,10 @@ class RegistrationFormValidator(object):
             validatedAge <- validateAge(age)
         } yield RegistrationData(validatedUserName, validatedPassword, validatedFirstName, validatedLastName, validatedAge)
         """
-        validated = self.validateUsername(username)
-        return validated
+        validationResult = Chain([self.validateUsername(
+            username), password, first_name, last_name, age])
+
+        return from_Either(cond(validationResult.filter(lambda e: isinstance(e, Valid)), validationResult, RegistrationData(username, password, first_name, last_name, age)))
 
 
 def test_validation():

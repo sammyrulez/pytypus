@@ -16,7 +16,17 @@ class Chain(Generic[T]):
         return Chain(map(f, self.list))
 
     def flat_map(self, f: Callable[[T], Chain[S]]) -> Chain[S]:
-        temp: List[T] = []
+        temp: List[S] = []
         for e in list:
             temp = temp + f(e)
         return Chain(temp)
+
+    def filter(self, f: Callable[T, bool]) -> Chain[T]:
+        temp: List[T] = []
+        for e in self.list:
+            if f(e):
+                temp.append(e)
+        return Chain(temp)
+
+    def __sizeof__(self):
+        return len(self.list)
