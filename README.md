@@ -35,7 +35,7 @@ In day-to-day programming, it is fairly common to find ourselves writing functio
 
 ## State
 
-## List
+## Chain
 
 ## Kleisli
 
@@ -46,6 +46,8 @@ In day-to-day programming, it is fairly common to find ourselves writing functio
 ## Const
 
 ## Pattern matcher
+
+
 
 
 

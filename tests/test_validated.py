@@ -27,17 +27,25 @@ class UsernameHasSpecialCharacters(DomainValidation):
         return "Username cannot contain special characters."
 
 
+class PasswordTooShort(DomainValidation):
+    @property
+    def errorMessage(self) -> str:
+        return "Password must be at least 8 characters long"
+
+
 class RegistrationFormValidator(object):
 
-    def validateUsername(self, username: str) -> Validated[DomainValidation, str]:
+    def validate_username(self, username: str) -> Validated[DomainValidation, str]:
         match = re.findall(r"(?:^|(?<=\s))", username, flags=re.IGNORECASE)
         return from_Either(cond(match, username, UsernameHasSpecialCharacters))
 
+    def validate_password(self, password: str) -> Validated[DomainValidation, str]:
+        return from_Either(cond(len(password) > 8, password, UsernameHasSpecialCharacters))
+
     def validateForm(self, username: str, password: str, first_name: str, last_name: str, age: int) -> Validated[Chain[DomainValidation], RegistrationData]:
         validationResult = Chain([
-            self.validateUsername(username),
-            password, first_name, last_name, age])
-
+            self.validate_username(username),
+            self.validate_password(password)])
         return validate(validationResult, RegistrationData(username, password, first_name, last_name, age))
 
 
