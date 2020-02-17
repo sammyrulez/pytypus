@@ -1,6 +1,7 @@
 
-from typing import TypeVar, Generic
-from pytypus.either import Either
+from typing import TypeVar, Generic, Callable
+from pytypus.either import Either, cond
+from pytypus.list import Chain
 
 E = TypeVar("E")
 A = TypeVar("A")
@@ -31,3 +32,7 @@ def from_Either(e: Either[E, A]) -> Validated[E, A]:
         return InValid(e.left)
     if(e.right):
         return Valid(e.right)
+
+
+def validate(validator_chain: Chain[E], output: A) -> Validated[Chain[E], A]:
+    return from_Either(cond(validator_chain.filter(lambda e: isinstance(e, Valid)), validator_chain, output))

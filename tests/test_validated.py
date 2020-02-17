@@ -1,5 +1,5 @@
 from pytypus.either import Either, cond
-from pytypus.validated import Valid, Validated, from_Either
+from pytypus.validated import Valid, Validated, from_Either, validate
 from pytypus.list import Chain
 from dataclasses import dataclass
 import re
@@ -38,7 +38,7 @@ class RegistrationFormValidator(object):
             self.validateUsername(username),
             password, first_name, last_name, age])
 
-        return from_Either(cond(validationResult.filter(lambda e: isinstance(e, Valid)), validationResult, RegistrationData(username, password, first_name, last_name, age)))
+        return validate(validationResult, RegistrationData(username, password, first_name, last_name, age))
 
 
 def test_validation():
