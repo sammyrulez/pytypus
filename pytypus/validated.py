@@ -1,5 +1,4 @@
-
-from typing import TypeVar, Generic, Callable
+from typing import TypeVar, Generic
 from pytypus.either import Either, cond
 from pytypus.list import Chain
 
@@ -27,12 +26,12 @@ class InValid(Validated[E, None]):
         self.e = e
 
 
-def from_Either(e: Either[E, A]) -> Validated[E, A]:
+def from_either(e: Either[E, A]) -> Validated[E, A]:
     if(e.left):
         return InValid(e.left)
-    if(e.right):
+    else:
         return Valid(e.right)
 
 
 def validate(validator_chain: Chain[E], output: A) -> Validated[Chain[E], A]:
-    return from_Either(cond(validator_chain.filter(lambda e: isinstance(e, Valid)), validator_chain, output))
+    return from_either(cond(validator_chain.filter(lambda e: isinstance(e, Valid)), validator_chain, output))
